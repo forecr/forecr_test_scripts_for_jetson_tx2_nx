@@ -66,17 +66,17 @@ function test_menu {
 		echo "4) Public Network Test (ping)"
 		echo "5) USB Test"
 		echo "6) CSI Test"
-		echo "7) RS-232 Test"
-		echo "8) CAN Bus (Send) Test"
-		echo "9) CAN Bus (Receive) Test"
-		echo "10) Digital Out Test"
-		echo "11) Digital In-0 Test"
-		echo "12) Digital In-1 Test"
-		echo "13) RS-422 Test"
-		echo "14) RS-485 Write Test"
-		echo "15) RS-485 Read Test"
-		echo "16) M.2 Key-B Test"
-		echo "17) M.2 Key-E Test" 
+		echo "7) M.2 Key-E Test" 
+		echo "8) M.2 Key-B Test"
+		echo "9) RS-232 Test"
+		echo "10) RS-422 Test"
+		echo "11) RS-485 Write Test"
+		echo "12) RS-485 Read Test"
+		echo "13) CAN Bus (Send) Test"
+		echo "14) CAN Bus (Receive) Test"
+		echo "15) Digital Out Test"
+		echo "16) Digital In-0 Test"
+		echo "17) Digital In-1 Test"
 		read -p "Type the test number (or quit) [1/.../q]: " choice
 		echo ""
 
@@ -124,50 +124,50 @@ function test_menu {
 				gnome-terminal -- $SCRIPTS_FOLDER/csi_2_test.sh
 				;;
 			7 )
+				sudo gnome-terminal -- watch -n 1 lspci
+				sudo gnome-terminal -- watch -n 1 lsusb
+				;;
+			8 )
+				$SCRIPTS_FOLDER/M.2_Key_B_QualComm.sh
+				sudo gnome-terminal -- watch -n 1 lsusb
+				;;
+			9 )
 				$SCRIPTS_FOLDER/enable_rs232_tx2_nx.sh
 				sudo gnome-terminal -- gtkterm -p /dev/ttyTHS2 -s 115200
 				;;
-			8 )
-				$SCRIPTS_FOLDER/enable_can_tx2_nx.sh
-				gnome-terminal -- cangen can0 -v
-				;;
-			9 )
-				$SCRIPTS_FOLDER/enable_can_tx2_nx.sh
-				gnome-terminal -- candump can0
-				;;
 			10 )
-				$SCRIPTS_FOLDER/enable_digital_out_tx2_nx.sh
-				gnome-terminal -- $SCRIPTS_FOLDER/test_digital_out_multi_tx2_nx.sh
-				;;
-			11 )
-				$SCRIPTS_FOLDER/enable_digital_in_tx2_nx.sh
-				gnome-terminal -- $SCRIPTS_FOLDER/test_digital_in0_tx2_nx.sh
-				;;
-			12 )
-				$SCRIPTS_FOLDER/enable_digital_in_tx2_nx.sh
-				gnome-terminal -- $SCRIPTS_FOLDER/test_digital_in1_tx2_nx.sh
-				;;
-			13 )
 				$SCRIPTS_FOLDER/enable_rs422_tx2_nx.sh
 				sudo gnome-terminal -- gtkterm -p /dev/ttyTHS2 -s 115200
 				;;
-			14 )
+			11 )
 				$SCRIPTS_FOLDER/enable_rs485_tx2_nx.sh
 				$SCRIPTS_FOLDER/enable_rs485_write_tx2_nx.sh
 				sudo gnome-terminal -- gtkterm -p /dev/ttyTHS2 -s 115200 -w RS485
 				;;
-			15 )
+			12 )
 				$SCRIPTS_FOLDER/enable_rs485_tx2_nx.sh
 				$SCRIPTS_FOLDER/enable_rs485_read_tx2_nx.sh
 				sudo gnome-terminal -- gtkterm -p /dev/ttyTHS2 -s 115200 -w RS485
 				;;
+			13 )
+				$SCRIPTS_FOLDER/enable_can_tx2_nx.sh
+				gnome-terminal -- cangen can0 -v
+				;;
+			14 )
+				$SCRIPTS_FOLDER/enable_can_tx2_nx.sh
+				gnome-terminal -- candump can0
+				;;
+			15 )
+				$SCRIPTS_FOLDER/enable_digital_out_tx2_nx.sh
+				gnome-terminal -- $SCRIPTS_FOLDER/test_digital_out_multi_tx2_nx.sh
+				;;
 			16 )
-				$SCRIPTS_FOLDER/M.2_Key_B_QualComm.sh
-				sudo gnome-terminal -- watch -n 1 lsusb
+				$SCRIPTS_FOLDER/enable_digital_in_tx2_nx.sh
+				gnome-terminal -- $SCRIPTS_FOLDER/test_digital_in0_tx2_nx.sh
 				;;
 			17 )
-				sudo gnome-terminal -- watch -n 1 lspci
-				sudo gnome-terminal -- watch -n 1 lsusb
+				$SCRIPTS_FOLDER/enable_digital_in_tx2_nx.sh
+				gnome-terminal -- $SCRIPTS_FOLDER/test_digital_in1_tx2_nx.sh
 				;;
 			[Qq]* )
 				echo "Quitting ..."
