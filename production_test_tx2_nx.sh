@@ -116,7 +116,7 @@ function test_menu {
 				;;
 			5 )
 				echo "Check both USB devices connected to 'Linux Foundation 3.0 root hub'"
-				gnome-terminal -- watch -n 1 lsusb
+				gnome-terminal -- watch -n 0.1 lsusb
 				;;
 			6 )
 				gnome-terminal -- $SCRIPTS_FOLDER/csi_1_test.sh
@@ -124,12 +124,12 @@ function test_menu {
 				gnome-terminal -- $SCRIPTS_FOLDER/csi_2_test.sh
 				;;
 			7 )
-				sudo gnome-terminal -- watch -n 1 lspci
-				sudo gnome-terminal -- watch -n 1 lsusb
+				sudo gnome-terminal -- watch -n 0.1 lspci
+				sudo gnome-terminal -- watch -n 0.1 lsusb
 				;;
 			8 )
 				$SCRIPTS_FOLDER/M.2_Key_B_QualComm.sh
-				sudo gnome-terminal -- watch -n 1 lsusb
+				sudo gnome-terminal -- watch -n 0.1 lsusb
 				;;
 			9 )
 				$SCRIPTS_FOLDER/enable_rs232_tx2_nx.sh

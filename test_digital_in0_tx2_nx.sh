@@ -4,5 +4,5 @@ if [ "$(whoami)" != "root" ] ; then
 	exit 1
 fi
 
-watch -n 1 sudo cat /sys/class/gpio/gpio248/value
+watch -n 0.1 sudo cat /sys/class/gpio/gpio248/value
 
