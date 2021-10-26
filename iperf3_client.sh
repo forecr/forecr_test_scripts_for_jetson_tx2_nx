@@ -1,5 +1,11 @@
 #!/bin/bash
-read -p "Enter the IP address of iPerf3 server: " network_address
+net_addr_default="192.168.1.1"
+read -p "Enter the IP address of iPerf3 server [Default: $net_addr_default]: " network_address
+
+if [[ $network_address == "" ]]; then
+	network_address=$net_addr_default
+fi
+
 echo "Step (1/4)" && \
 iperf3 -c $network_address && \
 echo "Step (2/4)" && \
