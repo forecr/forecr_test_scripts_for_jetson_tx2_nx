@@ -6,8 +6,11 @@ if [ "$(whoami)" != "root" ] ; then
 fi
 
 # Check the scipts' folder
-SCRIPTS_FOLDER=$1
-if [ $# -ne 1 ]; then
+SCRIPTS_FOLDER=${PWD}
+if [ $# -eq 1 ]; then
+	SCRIPTS_FOLDER=$1
+fi
+if [ $# -gt 1 ]; then
 	echo "Please type test scripts' folder path"
 	echo "Please run as:"
 	echo "sudo $0 <test_scripts'_full_path>"
