@@ -4,94 +4,92 @@ if [ "$(whoami)" != "root" ] ; then
 	exit 1
 fi
 
-sudo echo 0 > /sys/class/gpio/gpio252/value
-sudo echo 0 > /sys/class/gpio/gpio253/value
-sudo echo 0 > /sys/class/gpio/gpio254/value
-
-step_count=0
-test_number=14
 sleep_time=0.3
 
+sudo echo 252 > /sys/class/gpio/export
+sudo echo out > /sys/class/gpio/gpio252/direction
+sudo echo 253 > /sys/class/gpio/export
+sudo echo out > /sys/class/gpio/gpio253/direction
+sudo echo 254 > /sys/class/gpio/export
+sudo echo out > /sys/class/gpio/gpio254/direction
+
+sleep $sleep_time
+
+echo "DIGITAL_OUT0 OFF"
+sudo echo 0 > /sys/class/gpio/gpio252/value
+echo "DIGITAL_OUT1 OFF"
+sudo echo 0 > /sys/class/gpio/gpio253/value
+echo "DIGITAL_OUT2 OFF"
+sudo echo 0 > /sys/class/gpio/gpio254/value
+
 #Single Test
-step_count=$(($step_count+1))
-echo "step: $step_count/$test_number"
+echo "step: 1/14"
 echo "DIGITAL_OUT0 ON"
 sudo echo 1 > /sys/class/gpio/gpio252/value
 sleep $sleep_time
 
-step_count=$(($step_count+1))
-echo "step: $step_count/$test_number"
+echo "step: 2/14"
 echo "DIGITAL_OUT0 OFF"
 sudo echo 0 > /sys/class/gpio/gpio252/value
 sleep $sleep_time
 
-step_count=$(($step_count+1))
-echo "step: $step_count/$test_number"
+echo "step: 3/14"
 echo "DIGITAL_OUT1 ON"
 sudo echo 1 > /sys/class/gpio/gpio253/value
 sleep $sleep_time
 
-step_count=$(($step_count+1))
-echo "step: $step_count/$test_number"
+echo "step: 4/14"
 echo "DIGITAL_OUT1 OFF"
 sudo echo 0 > /sys/class/gpio/gpio253/value
 sleep $sleep_time
 
-step_count=$(($step_count+1))
-echo "step: $step_count/$test_number"
+echo "step: 5/14"
 echo "DIGITAL_OUT2 ON"
 sudo echo 1 > /sys/class/gpio/gpio254/value
 sleep $sleep_time
 
-step_count=$(($step_count+1))
-echo "step: $step_count/$test_number"
+echo "step: 6/14"
 echo "DIGITAL_OUT2 OFF"
 sudo echo 0 > /sys/class/gpio/gpio254/value
 sleep $sleep_time
 
 #Double Test
-step_count=$(($step_count+1))
-echo "step: $step_count/$test_number"
+echo "step: 7/14"
 echo "DIGITAL_OUT0 ON"
 echo "DIGITAL_OUT1 ON"
 sudo echo 1 > /sys/class/gpio/gpio252/value
 sudo echo 1 > /sys/class/gpio/gpio253/value
 sleep $sleep_time
 
-step_count=$(($step_count+1))
-echo "step: $step_count/$test_number"
+echo "step: 8/14"
 echo "DIGITAL_OUT0 OFF"
 echo "DIGITAL_OUT1 OFF"
 sudo echo 0 > /sys/class/gpio/gpio252/value
 sudo echo 0 > /sys/class/gpio/gpio253/value
 sleep $sleep_time
 
-step_count=$(($step_count+1))
-echo "step: $step_count/$test_number"
+echo "step: 9/14"
 echo "DIGITAL_OUT1 ON"
 echo "DIGITAL_OUT2 ON"
 sudo echo 1 > /sys/class/gpio/gpio253/value
 sudo echo 1 > /sys/class/gpio/gpio254/value
 sleep $sleep_time
 
-step_count=$(($step_count+1))
-echo "step: $step_count/$test_number"
+echo "step: 10/14"
 echo "DIGITAL_OUT1 OFF"
 echo "DIGITAL_OUT2 OFF"
 sudo echo 0 > /sys/class/gpio/gpio253/value
 sudo echo 0 > /sys/class/gpio/gpio254/value
 sleep $sleep_time
 
-step_count=$(($step_count+1))
-echo "step: $step_count/$test_number"
+echo "step: 11/14"
 echo "DIGITAL_OUT0 ON"
 echo "DIGITAL_OUT2 ON"
 sudo echo 1 > /sys/class/gpio/gpio252/value
 sudo echo 1 > /sys/class/gpio/gpio254/value
 sleep $sleep_time
 
-step_count=$(($step_count+1))
-echo "step: $step_count/$test_number"
+echo "step: 12/14"
 echo "DIGITAL_OUT0 OFF"
 echo "DIGITAL_OUT2 OFF"
 sudo echo 0 > /sys/class/gpio/gpio252/value
@@ -99,8 +97,7 @@ sudo echo 0 > /sys/class/gpio/gpio254/value
 sleep $sleep_time
 
 #Triple Test
-step_count=$(($step_count+1))
-echo "step: $step_count/$test_number"
+echo "step: 13/14"
 echo "DIGITAL_OUT0 ON"
 echo "DIGITAL_OUT1 ON"
 echo "DIGITAL_OUT2 ON"
@@ -109,12 +106,23 @@ sudo echo 1 > /sys/class/gpio/gpio253/value
 sudo echo 1 > /sys/class/gpio/gpio254/value
 sleep $sleep_time
 
-step_count=$(($step_count+1))
-echo "step: $step_count/$test_number"
+echo "step: 14/14"
 echo "DIGITAL_OUT0 OFF"
 echo "DIGITAL_OUT1 OFF"
 echo "DIGITAL_OUT2 OFF"
 sudo echo 0 > /sys/class/gpio/gpio252/value
 sudo echo 0 > /sys/class/gpio/gpio253/value
 sudo echo 0 > /sys/class/gpio/gpio254/value
+
+echo "Completed"
+
+sleep 1
+sudo echo 1 > /sys/class/gpio/gpio252/value
+sudo echo 1 > /sys/class/gpio/gpio253/value
+sudo echo 1 > /sys/class/gpio/gpio254/value
+sleep 1
+
+sudo echo 252 > /sys/class/gpio/unexport
+sudo echo 253 > /sys/class/gpio/unexport
+sudo echo 254 > /sys/class/gpio/unexport
 

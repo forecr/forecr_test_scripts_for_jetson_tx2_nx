@@ -8,5 +8,7 @@ sudo modprobe can
 sudo modprobe can-raw
 sudo modprobe mttcan
 sudo ip link set can0 up type can bitrate 500000
-#cangen can0 -v
-#candump can0
+
+cangen can0 -v
+
+sudo ip link set can0 down
