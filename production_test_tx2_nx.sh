@@ -7,21 +7,6 @@ fi
 
 # Check the board revision
 board_rev_1_2=false
-read -p 'Is it DSBOARD-NX2 Rev-1.2 (y/n) [Default: n] ' board_rev
-case $board_rev in
-	[Yy]* )
-		board_rev_1_2=true
-		echo "Selecting 'y'"
-		;;
-	[Nn]* )
-		board_rev_1_2=false
-		echo "Selecting 'n'"
-		;;
-	* )
-		echo "Selecting default value"
-		;;
-esac
-
 
 # Check the scipts' folder
 SCRIPTS_FOLDER=${PWD}
