@@ -7,6 +7,10 @@ fi
 sudo echo 248 > /sys/class/gpio/export
 sudo echo in > /sys/class/gpio/gpio248/direction
 
+trap interrupt_func INT
+interrupt_func() {
+	sudo echo 248 > /sys/class/gpio/unexport
+}
+
 watch -n 0.1 sudo cat /sys/class/gpio/gpio248/value
 
-sudo echo 248 > /sys/class/gpio/unexport
